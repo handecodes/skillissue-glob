@@ -1,0 +1,22 @@
+name: challenge
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Run the single catching test
+        run: >
+          dotnet test test/Glob.Tests/Glob.Tests.csproj
+          -c Release
+          -f net8.0
+          -p:CollectCoverage=false
+          --filter "FullyQualifiedName~GlobTests.CanMatchSingleFileOnExtension"
