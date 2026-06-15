@@ -40,7 +40,7 @@ internal static class Matcher
                 case StringWildcard _:
                     return MatchesSubSegment(segments, nextSegment, -1, pathSegment, pathIndex, caseSensitive) // zero
                            || (pathIndex < pathSegment.Length &&
-                               MatchesSubSegment(segments, segmentIndex, -1, pathSegment, pathIndex + 1, caseSensitive)); // or one+
+                               MatchesSubSegment(segments, nextSegment, -1, pathSegment, pathIndex + 1, caseSensitive)); // or one+
 
                 case CharacterWildcard _:
                     return pathIndex < pathSegment.Length && MatchesSubSegment(segments, nextSegment, -1, pathSegment, pathIndex + 1, caseSensitive);
